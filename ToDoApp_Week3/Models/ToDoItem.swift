@@ -7,10 +7,11 @@
 import Foundation;
 import SwiftUICore;
 
-struct toDoItem: Identifiable, Decodable {
+struct toDoItem: Identifiable, Decodable, Encodable {
     let id: UUID = UUID()
-    let title: String
+    var title: String
     var isDone: Bool
+    
 }
 
 let todos:[toDoItem]=[
