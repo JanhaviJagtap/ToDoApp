@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var toDoItem: toDoItem
-    @State var store:Store
-    @State private var mytodos = todos
+    @ObservedObject var store:Store
+    //@State private var mytodos = todos
     @State private var userInput = ""
     
     var body: some View {
@@ -35,8 +35,8 @@ struct ContentView: View {
                 HStack{
                     TextField("Input a To Do item", text: $userInput)
                     Button{
-                        //mytodos.append(ToDoApp_Week3.toDoItem(title: userInput, isDone: false))
                         store.toDoItems.append(ToDoApp_Week3.toDoItem(title: userInput, isDone: false))
+                        userInput=""
                     }label: {
                         Text("Add To Do")
                     }
@@ -53,6 +53,7 @@ struct ContentView: View {
 
         }
     }
+    
 }
 
 #Preview {

@@ -2,8 +2,8 @@
 
 import Foundation
 
-class Store : Decodable, ObservableObject{
-    var toDoItems : [toDoItem]
+class Store :  ObservableObject{
+    @Published var toDoItems : [toDoItem]
     
     init(filename: String = "todoitems.json") {
         self.toDoItems = Bundle.main.decode(filename: filename, as: [toDoItem].self)
