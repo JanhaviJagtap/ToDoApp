@@ -2,10 +2,10 @@
 
 import Foundation
 
-class Store : Decodable {
-    var products : [Product]
+class Store : Decodable, ObservableObject{
+    var toDoItems : [toDoItem]
     
-    init(filename: String = "ProductData.json") {
-        self.products = Bundle.main.decode(filename: filename, as: [Product].self)
+    init(filename: String = "todoitems.json") {
+        self.toDoItems = Bundle.main.decode(filename: filename, as: [toDoItem].self)
     }
 }
