@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var toDoItem: toDoItem
+    @State var store:Store
     @State private var mytodos = todos
     @State private var userInput = ""
     
@@ -18,10 +19,10 @@ struct ContentView: View {
                 Text("My To Dos")
                     .font(.title)
                     .padding(.vertical, 30)
-                ForEach($mytodos){$todo in
+                ForEach($store.toDoItems){$toDoItem in
                     HStack{
-                        Button{todo.isDone.toggle() }label:{buttonToggler(isDone: todo.isDone)}
-                        Text("\(todo.title)")
+                        Button{toDoItem.isDone.toggle() }label:{buttonToggler(isDone: toDoItem.isDone)}
+                        Text("\(toDoItem.title)")
                             .font(.headline)
                             .padding(3)
                         Spacer()
@@ -34,8 +35,8 @@ struct ContentView: View {
                 HStack{
                     TextField("Input a To Do item", text: $userInput)
                     Button{
-                        mytodos.append(ToDoApp_Week3.toDoItem(title: userInput, isDone: false))
-                        
+                        //mytodos.append(ToDoApp_Week3.toDoItem(title: userInput, isDone: false))
+                        store.toDoItems.append(ToDoApp_Week3.toDoItem(title: userInput, isDone: false))
                     }label: {
                         Text("Add To Do")
                     }
@@ -55,5 +56,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(toDoItem: todos[0])
+    ContentView(toDoItem: todos[0], store: Store())
 }
